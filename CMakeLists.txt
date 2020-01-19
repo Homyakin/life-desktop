@@ -3,4 +3,15 @@ project(life_desktop)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(SFML_INCLUDE_DIR "/lib/SFML-2.5.1/include")
+set(SFML_LIBRARY_DIR "/lib/SFML-2.5.1/lib")
+set(SFML_DIR "/lib/SFML-2.5.1/lib/cmake/SFML")
+
+link_directories(SFML_LIBRARY_DIR)
+include_directories(SFML_INCLUDE_DIR)
+
+find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
+
 add_executable(life_desktop main.cpp)
+
+target_link_libraries(life_desktop sfml-graphics sfml-audio)
