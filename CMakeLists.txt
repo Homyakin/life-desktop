@@ -12,6 +12,6 @@ include_directories(SFML_INCLUDE_DIR)
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 
-add_executable(life_desktop main.cpp)
+add_executable(life_desktop src/main.cpp)
 
 target_link_libraries(life_desktop sfml-graphics sfml-audio)
