@@ -2,6 +2,16 @@
 #include <iostream>
 #include <ctime>
 #include <random>
+#include "game/SimpleLife.h"
+
+void printSimple(const std::vector<std::vector<SimpleCell>>& v) {
+    for (auto& i: v) {
+        for(auto& j: i) {
+            std::cout << (j.is_alive() ? 1 : 0) << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
 int main() {
     std::mt19937_64 gen(std::time(nullptr));
@@ -16,6 +26,9 @@ int main() {
     sf::CircleShape shape(256.f, 60);
     shape.setFillColor(sf::Color::Red);
     sf::Clock clock{};
+    SimpleLife life(10, 10);
+    life.start();
+    printSimple(life.get_current_state());
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event)) {
@@ -25,12 +38,14 @@ int main() {
                     break;
                 case sf::Event::MouseButtonPressed:
                     shape.setFillColor(sf::Color(color_dist(gen), color_dist(gen), color_dist(gen)));
+                    life.next_tick();
+                    printSimple(life.get_current_state());
                     std::cout << "MOUSE BUTTON PRESSED" << std::endl;
                     break;
-                case sf::Event::MouseMoved:
-                    window.setSize(sf::Vector2u(window_posx(gen), window_posy(gen)));
-                    std::cout << "MOUSE MOVED" << std::endl;
-                    break;
+                /*case sf::Event::MouseMoved:
+                    //window.setSize(sf::Vector2u(window_posx(gen), window_posy(gen)));
+                    //std::cout << "MOUSE MOVED" << std::endl;
+                    break;*/
                 case sf::Event::KeyPressed:
                     std::cout << "KEY PRESSED" << std::endl;
                     break;

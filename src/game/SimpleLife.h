@@ -13,8 +13,8 @@ public:
 
     void start() override;
 
-    void nextTick() override;
+    void next_tick() override;
 
-    std::vector<std::vector<SimpleCell> > getCurrentState() override;
+    const std::vector<std::vector<SimpleCell>> &get_current_state() const override;
 };
 

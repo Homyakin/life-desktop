@@ -1,52 +1,51 @@
 #include "SimpleField.h"
 
 SimpleField::SimpleField(int rows, int cols) {
-    field = std::vector<std::vector<SimpleCell>>(rows);
+    field = std::vector<std::vector<SimpleCell>>();
     this->rows = rows;
     this->cols = cols;
     for (int i = 0; i < rows; ++i) {
-        std::vector<SimpleCell> row(cols);
-        for (int j = 0; j < cols; ++j) {
-            row.emplace_back(SimpleCell());
-        }
-        field.push_back(row);
+        field.emplace_back(std::vector<SimpleCell>(cols));
     }
 }
 
-void SimpleField::fillRandom() {
+void SimpleField::fill_random() {
     for (auto &row: field) {
         for (auto &i: row) {
-            i = SimpleCell::getRandomState();
+            i = SimpleCell::get_random_state();
         }
     }
 }
 
-void SimpleField::updateState() {
-    auto nextField = std::vector<std::vector<SimpleCell>>(rows);
+void SimpleField::update_state() {
+    auto nextField = std::vector<std::vector<SimpleCell>>();
+    for (int i = 0; i < rows; ++i) {
+        nextField.emplace_back(std::vector<SimpleCell>(cols));
+    }
     for (int row = 0; row < rows; ++row) {
         for (int col = 0; col < cols; ++col) {
-            int liveNeighbors = countLiveNeighbors(row, col);
-            if (field[row][col].isAlive()) {
-                nextField[row][col].setAlive(liveNeighbors == 2 || liveNeighbors == 3);
+            int liveNeighbors = count_live_neighbors(row, col);
+            if (field[row][col].is_alive()) {
+                nextField[row][col].set_alive(liveNeighbors == 2 || liveNeighbors == 3);
             } else {
-                nextField[row][col].setAlive(liveNeighbors == 3);
+                nextField[row][col].set_alive(liveNeighbors == 3);
             }
         }
     }
     field = nextField;
 }
 
-int SimpleField::countLiveNeighbors(int row, int col) {
-    auto neighbors = getNeighbors(row, col);
+int SimpleField::count_live_neighbors(int row, int col) {
+    auto neighbors = get_neighbors(row, col);
     int liveNeighbors = 0;
     for (const auto &i: neighbors) {
-        if (i.isAlive()) ++liveNeighbors;
+        if (i.is_alive()) ++liveNeighbors;
     }
     return liveNeighbors;
 }
 
-std::vector<SimpleCell> SimpleField::getNeighbors(int row, int col) {
-    int up = row == 0 ? rows - 1 : row - 1;
+std::vector<SimpleCell> SimpleField::get_neighbors(int row, int col) {
+    int up = row != 0 ? row - 1:  rows - 1;
     int right = col != cols - 1 ? row + 1 : 0;
     int down = row != rows - 1 ? row + 1 : 0;
     int left = col != 0 ? col - 1 : cols - 1;

@@ -3,16 +3,15 @@
 SimpleLife::SimpleLife(int rows, int cols) : field(rows, cols) {}
 
 void SimpleLife::start() {
-    field.fillRandom();
+    field.fill_random();
     tick = 0;
 }
 
-void SimpleLife::nextTick() {
-    field.updateState();
+void SimpleLife::next_tick() {
+    field.update_state();
     ++tick;
 }
 
-std::vector<std::vector<SimpleCell> > SimpleLife::getCurrentState() {
-    return field.getCurrentState();
+const std::vector<std::vector<SimpleCell>> &SimpleLife::get_current_state() const {
+    return field.get_current_state();
 }
-

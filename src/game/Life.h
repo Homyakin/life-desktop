@@ -9,7 +9,7 @@ protected:
 public:
     virtual void start() = 0;
 
-    virtual void nextTick() = 0;
+    virtual void next_tick() = 0;
 
-    virtual std::vector<std::vector<T>> getCurrentState() = 0;
+    virtual const std::vector<std::vector<T>> &get_current_state() const = 0;
 };
