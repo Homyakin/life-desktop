@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include "Life.h"
 #include "models/cells/SimpleCell.h"
 #include "models/SimpleField.h"
@@ -16,5 +17,7 @@ public:
     void next_tick() override;
 
     const std::vector<std::vector<SimpleCell>> &get_current_state() const override;
+
+    void render(sf::RenderWindow &window) const override;
 };
 

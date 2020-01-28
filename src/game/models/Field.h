@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <SFML/Graphics.hpp>
 #include <vector>
 #include "cells/Cell.h"
 
@@ -18,4 +18,6 @@ public:
     virtual void update_state() = 0;
 
     virtual void fill_random() = 0;
+
+    virtual std::vector<sf::RectangleShape> render(int window_size) const = 0;
 };

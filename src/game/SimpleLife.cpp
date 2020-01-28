@@ -15,3 +15,11 @@ void SimpleLife::next_tick() {
 const std::vector<std::vector<SimpleCell>> &SimpleLife::get_current_state() const {
     return field.get_current_state();
 }
+
+void SimpleLife::render(sf::RenderWindow &window) const {
+    int min_size = std::min(window.getSize().x, window.getSize().y);
+    auto cells = field.render(min_size);
+    for(auto& cell: cells) {
+        window.draw(cell);
+    }
+}

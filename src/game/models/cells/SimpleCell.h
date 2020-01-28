@@ -2,6 +2,7 @@
 
 #include <random>
 #include <ctime>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include "Cell.h"
 
 class SimpleCell : public Cell {
@@ -10,6 +11,8 @@ private:
     bool alive;
 public:
     explicit SimpleCell(bool alive = false);
+
+    sf::RectangleShape render(int cell_size) const override;
 
     static SimpleCell get_random_state();
 

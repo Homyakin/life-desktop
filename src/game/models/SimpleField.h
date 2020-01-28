@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include "Field.h"
 #include "cells/SimpleCell.h"
 
@@ -10,6 +11,8 @@ public:
     void fill_random() override;
 
     void update_state() override;
+
+    std::vector<sf::RectangleShape> render(int window_size) const override;
 
 private:
     int count_live_neighbors(int row, int col);

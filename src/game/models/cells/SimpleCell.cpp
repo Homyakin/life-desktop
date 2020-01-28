@@ -20,3 +20,10 @@ bool SimpleCell::is_alive() const {
 void SimpleCell::set_alive(bool _alive) {
     alive = _alive;
 }
+
+sf::RectangleShape SimpleCell::render(int cell_size) const {
+    sf::RectangleShape rectangle{};
+    rectangle.setSize(sf::Vector2f(cell_size, cell_size));
+    rectangle.setFillColor(is_alive() ? sf::Color::Black : sf::Color::White);
+    return rectangle;
+}

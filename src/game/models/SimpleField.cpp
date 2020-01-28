@@ -45,11 +45,11 @@ int SimpleField::count_live_neighbors(int row, int col) {
 }
 
 std::vector<SimpleCell> SimpleField::get_neighbors(int row, int col) {
-    int up = row != 0 ? row - 1:  rows - 1;
-    int right = col != cols - 1 ? row + 1 : 0;
+    int up = row != 0 ? row - 1 : rows - 1;
+    int right = col != cols - 1 ? col + 1 : 0;
     int down = row != rows - 1 ? row + 1 : 0;
     int left = col != 0 ? col - 1 : cols - 1;
-    std::vector<SimpleCell> neighbors(8);
+    std::vector<SimpleCell> neighbors{};
 
     neighbors.push_back(field[up][col]);
     neighbors.push_back(field[up][right]);
@@ -61,5 +61,18 @@ std::vector<SimpleCell> SimpleField::get_neighbors(int row, int col) {
     neighbors.push_back(field[up][left]);
 
     return neighbors;
+}
+
+std::vector<sf::RectangleShape> SimpleField::render(int window_size) const {
+    int cell_size = window_size / field.size();
+    std::vector<sf::RectangleShape> cells{};
+    for (int row = 0; row < field.size(); ++row) {
+        for (int col = 0; col < field[row].size(); ++col) {
+            sf::RectangleShape cell = field[row][col].render(cell_size);
+            cell.setPosition(col * cell_size, row * cell_size);
+            cells.push_back(cell);
+        }
+    }
+    return cells;
 }
 
