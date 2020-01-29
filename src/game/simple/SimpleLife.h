@@ -19,5 +19,8 @@ public:
     const std::vector<std::vector<SimpleCell>> &get_current_state() const override;
 
     void render(sf::RenderWindow &window) const override;
+
+private:
+    void render_grid(sf::RenderWindow &window) const;
 };
 

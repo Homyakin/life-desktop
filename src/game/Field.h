@@ -15,6 +15,14 @@ public:
         return field;
     }
 
+    int get_rows() const {
+        return rows;
+    }
+
+    int get_cols() const {
+        return cols;
+    }
+
     virtual void update_state() = 0;
 
     virtual void fill_random() = 0;

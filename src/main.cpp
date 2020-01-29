@@ -18,7 +18,7 @@ int main() {
         sf::Style::Titlebar | sf::Style::Close
     );
     sf::Clock clock{};
-    SimpleLife life(200, 200);
+    SimpleLife life(50, 50);
     life.start();
     while (window.isOpen()) {
         sf::Clock tick{};
@@ -37,8 +37,8 @@ int main() {
         life.render(window);
         life.next_tick();
         window.display();
-        if(clock.getElapsedTime().asMilliseconds() < 500)
-            sf::sleep(sf::milliseconds(500 - clock.getElapsedTime().asMilliseconds()));
+        if(tick.getElapsedTime().asMilliseconds() < 500)
+            sf::sleep(sf::milliseconds(500 - tick.getElapsedTime().asMilliseconds()));
     }
     std::cout << clock.getElapsedTime().asSeconds() << std::endl;
     return 0;

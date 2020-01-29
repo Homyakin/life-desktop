@@ -77,4 +77,3 @@ std::vector<sf::RectangleShape> SimpleField::render(int window_size) const {
     }
     return cells;
 }
-
