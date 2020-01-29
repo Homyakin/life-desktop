@@ -18,6 +18,7 @@ const std::vector<std::vector<SimpleCell>> &SimpleLife::get_current_state() cons
 
 void SimpleLife::render(sf::RenderWindow &window) const {
     int min_size = std::min(window.getSize().x, window.getSize().y);
+    window.clear(sf::Color::White);
     auto cells = field.render(min_size);
     for(auto& cell: cells) {
         window.draw(cell);

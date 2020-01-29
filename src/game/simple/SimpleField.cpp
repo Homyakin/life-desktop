@@ -68,9 +68,11 @@ std::vector<sf::RectangleShape> SimpleField::render(int window_size) const {
     std::vector<sf::RectangleShape> cells{};
     for (int row = 0; row < field.size(); ++row) {
         for (int col = 0; col < field[row].size(); ++col) {
-            sf::RectangleShape cell = field[row][col].render(cell_size);
-            cell.setPosition(col * cell_size, row * cell_size);
-            cells.push_back(cell);
+            if (field[row][col].is_alive()) {
+                sf::RectangleShape cell = field[row][col].render(cell_size);
+                cell.setPosition(col * cell_size, row * cell_size);
+                cells.push_back(cell);
+            }
         }
     }
     return cells;
