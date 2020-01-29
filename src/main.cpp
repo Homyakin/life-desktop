@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "game/SimpleLife.h"
+#include "game/simple/SimpleLife.h"
 
 void printSimple(const std::vector<std::vector<SimpleCell>> &v) {
     for (auto &i: v) {
@@ -13,12 +13,12 @@ void printSimple(const std::vector<std::vector<SimpleCell>> &v) {
 
 int main() {
     sf::RenderWindow window(
-        sf::VideoMode(500, 500),
+        sf::VideoMode(1000, 1000),
         "Game of Life",
         sf::Style::Titlebar | sf::Style::Close
     );
     sf::Clock clock{};
-    SimpleLife life(10, 10);
+    SimpleLife life(50, 50);
     life.start();
     while (window.isOpen()) {
 

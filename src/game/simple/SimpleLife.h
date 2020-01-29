@@ -1,9 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Life.h"
-#include "models/cells/SimpleCell.h"
-#include "models/SimpleField.h"
+#include "../Life.h"
+#include "SimpleCell.h"
+#include "SimpleField.h"
 
 class SimpleLife : public Life<SimpleCell> {
 private:

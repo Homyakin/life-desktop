@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "cells/Cell.h"
+#include "Cell.h"
 
 template<class T, typename = std::enable_if<std::is_base_of<Cell, T>::value>>
 class Field {

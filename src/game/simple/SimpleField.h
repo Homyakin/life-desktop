@@ -1,8 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Field.h"
-#include "cells/SimpleCell.h"
+#include "../Field.h"
+#include "SimpleCell.h"
 
 class SimpleField : public Field<SimpleCell> {
 public:

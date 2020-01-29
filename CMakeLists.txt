@@ -13,8 +13,9 @@ include_directories(SFML_INCLUDE_DIR)
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 
 add_executable(life_desktop src/main.cpp
-        src/game/Life.h src/game/SimpleLife.cpp src/game/SimpleLife.h
-        src/game/models/Field.h src/game/models/SimpleField.cpp src/game/models/SimpleField.h
-        src/game/models/cells/Cell.h src/game/models/cells/SimpleCell.cpp src/game/models/cells/SimpleCell.h)
+    src/game/Life.h src/game/Field.h src/game/Cell.h
+    src/game/simple/SimpleLife.cpp src/game/simple/SimpleLife.h
+    src/game/simple/SimpleField.cpp src/game/simple/SimpleField.h
+    src/game/simple/SimpleCell.cpp src/game/simple/SimpleCell.h)
 
 target_link_libraries(life_desktop sfml-graphics sfml-audio)

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "models/Field.h"
+#include "Field.h"
 
 template<class T, typename = std::enable_if<std::is_base_of<Cell, T>::value>>
 class Life {

@@ -3,7 +3,7 @@
 #include <random>
 #include <ctime>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include "Cell.h"
+#include "../Cell.h"
 
 class SimpleCell : public Cell {
 private:
