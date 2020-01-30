@@ -18,7 +18,8 @@ int main() {
         sf::Style::Titlebar | sf::Style::Close
     );
     sf::Clock clock{};
-    SimpleLife life(50, 50);
+    SimpleLife life(100, 100);
+    life.enable_grid();
     life.start();
     while (window.isOpen()) {
         sf::Clock tick{};

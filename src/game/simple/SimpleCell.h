@@ -12,7 +12,7 @@ private:
 public:
     explicit SimpleCell(bool alive = false);
 
-    sf::RectangleShape render(int cell_size) const override;
+    sf::RectangleShape render(int size_x, int size_y) const override;
 
     static SimpleCell get_random_state();
 

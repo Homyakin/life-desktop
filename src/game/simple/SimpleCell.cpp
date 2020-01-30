@@ -21,9 +21,9 @@ void SimpleCell::set_alive(bool _alive) {
     alive = _alive;
 }
 
-sf::RectangleShape SimpleCell::render(int cell_size) const {
+sf::RectangleShape SimpleCell::render(int size_x, int size_y) const {
     sf::RectangleShape rectangle{};
-    rectangle.setSize(sf::Vector2f(cell_size, cell_size));
+    rectangle.setSize(sf::Vector2f(size_x, size_y));
     rectangle.setFillColor(alive ? sf::Color::Black : sf::Color::White);
     return rectangle;
 }

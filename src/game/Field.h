@@ -27,5 +27,5 @@ public:
 
     virtual void fill_random() = 0;
 
-    virtual std::vector<sf::RectangleShape> render(int window_size) const = 0;
+    virtual std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y) const = 0;
 };

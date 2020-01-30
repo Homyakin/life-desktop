@@ -63,14 +63,15 @@ std::vector<SimpleCell> SimpleField::get_neighbors(int row, int col) {
     return neighbors;
 }
 
-std::vector<sf::RectangleShape> SimpleField::render(int window_size) const {
-    int cell_size = window_size / field.size();
+std::vector<sf::RectangleShape> SimpleField::render(int window_size_x, int window_size_y) const {
+    int cell_size_x = window_size_x / cols;
+    int cell_size_y = window_size_y / rows;
     std::vector<sf::RectangleShape> cells{};
     for (int row = 0; row < field.size(); ++row) {
         for (int col = 0; col < field[row].size(); ++col) {
             if (field[row][col].is_alive()) {
-                sf::RectangleShape cell = field[row][col].render(cell_size);
-                cell.setPosition(col * cell_size, row * cell_size);
+                sf::RectangleShape cell = field[row][col].render(cell_size_x, cell_size_y);
+                cell.setPosition(col * cell_size_x, row * cell_size_y);
                 cells.push_back(cell);
             }
         }

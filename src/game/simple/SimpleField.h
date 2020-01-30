@@ -12,7 +12,7 @@ public:
 
     void update_state() override;
 
-    std::vector<sf::RectangleShape> render(int window_size) const override;
+    std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y) const override;
 
 private:
     int count_live_neighbors(int row, int col);
