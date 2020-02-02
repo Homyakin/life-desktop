@@ -11,21 +11,17 @@ protected:
     int rows = 0;
     int cols = 0;
 public:
-    const std::vector<std::vector<T>> &get_current_state() const {
-        return field;
-    }
+    const std::vector<std::vector<T>> &get_current_state() const { return field; }
 
-    int get_rows() const {
-        return rows;
-    }
+    int get_rows() const { return rows; }
 
-    int get_cols() const {
-        return cols;
-    }
+    int get_cols() const { return cols; }
 
     virtual void update_state() = 0;
 
     virtual void fill_random() = 0;
+
+    virtual void change_cell(int row, int col) = 0;
 
     virtual std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y) const = 0;
 };

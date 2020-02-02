@@ -13,14 +13,48 @@ void printSimple(const std::vector<std::vector<SimpleCell>> &v) {
 
 int main() {
     sf::RenderWindow window(
-        sf::VideoMode(1000, 1000),
+        sf::VideoMode(1500, 1000),
         "Game of Life",
         sf::Style::Titlebar | sf::Style::Close
     );
     sf::Clock clock{};
-    SimpleLife life(100, 100);
+
+    SimpleLife life(10, 15);
     life.enable_grid();
-    life.start();
+    life.empty_start();
+
+    while (window.isOpen() && !life.is_started()) {
+        sf::Clock tick{};
+        sf::Event event{};
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                case sf::Event::MouseButtonPressed: {
+                    if (event.mouseButton.button == sf::Mouse::Button::Left) {
+                        life.change_cell(window, event.mouseButton.x, event.mouseButton.y);
+                    }
+                    break;
+                }
+                case sf::Event::KeyPressed:
+                    if (event.key.code == sf::Keyboard::Return) {
+                        std::cout << "START" << std::endl;
+                        life.start_game();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        window.clear();
+        life.render(window);
+        window.display();
+    }
+
+    life.disable_grid();
+
     while (window.isOpen()) {
         sf::Clock tick{};
         sf::Event event{};
@@ -38,9 +72,10 @@ int main() {
         life.render(window);
         life.next_tick();
         window.display();
-        if(tick.getElapsedTime().asMilliseconds() < 500)
+        if (tick.getElapsedTime().asMilliseconds() < 500)
             sf::sleep(sf::milliseconds(500 - tick.getElapsedTime().asMilliseconds()));
     }
+
     std::cout << clock.getElapsedTime().asSeconds() << std::endl;
     return 0;
 }

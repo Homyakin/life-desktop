@@ -12,7 +12,11 @@ private:
 public:
     SimpleLife(int rows, int cols);
 
-    void start() override;
+    void random_start() override;
+
+    void empty_start() override;
+
+    void change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) override;
 
     void next_tick() override;
 

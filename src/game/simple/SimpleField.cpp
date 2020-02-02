@@ -17,6 +17,11 @@ void SimpleField::fill_random() {
     }
 }
 
+void SimpleField::change_cell(int row, int col) {
+    if(row < rows && col < cols)
+        field[row][col].set_alive(!field[row][col].is_alive());
+}
+
 void SimpleField::update_state() {
     auto nextField = std::vector<std::vector<SimpleCell>>();
     for (int i = 0; i < rows; ++i) {

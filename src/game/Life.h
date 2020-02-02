@@ -10,10 +10,15 @@ protected:
     int cols = 0;
     unsigned int tick = 0;
     bool grid_enabled = false;
+    bool started = false;
 public:
-    virtual void start() = 0;
+    virtual void random_start() = 0;
 
     virtual void next_tick() = 0;
+
+    virtual void empty_start() = 0;
+
+    virtual void change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) = 0;
 
     virtual const std::vector<std::vector<T>> &get_current_state() const = 0;
 
@@ -24,6 +29,10 @@ public:
     void enable_grid() { grid_enabled = true; }
 
     void disable_grid() { grid_enabled = false; }
+
+    void start_game() { started = true; }
+
+    bool is_started() const { return started; }
 
 protected:
     void render_grid(sf::RenderWindow &window) const {
