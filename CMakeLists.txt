@@ -12,6 +12,9 @@ include_directories(SFML_INCLUDE_DIR)
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/arial.ttf
+        ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+
 add_executable(life_desktop src/main.cpp
     src/game/Life.h src/game/Field.h src/game/Cell.h
     src/game/simple/SimpleLife.cpp src/game/simple/SimpleLife.h

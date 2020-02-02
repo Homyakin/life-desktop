@@ -22,7 +22,14 @@ int main() {
     SimpleLife life(10, 15);
     life.enable_grid();
     life.empty_start();
-
+    /*sf::Text text{};
+    sf::Font font{};
+    font.loadFromFile("arial.ttf");
+    text.setFont(font);
+    text.setFillColor(sf::Color::Black);
+    text.setString("Classic");
+    text.setPosition(200, 200);
+    text.setCharacterSize(20);*/
     while (window.isOpen() && !life.is_started()) {
         sf::Clock tick{};
         sf::Event event{};
@@ -50,6 +57,7 @@ int main() {
 
         window.clear();
         life.render(window);
+        window.draw(text);
         window.display();
     }
 
