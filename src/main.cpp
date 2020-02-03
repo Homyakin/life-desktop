@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "game/simple/SimpleLife.h"
+#include "life/classic/ClassicCell.h"
+#include "life/Life.h"
+#include "life/classic/ClassicLife.h"
 
-void printSimple(const std::vector<std::vector<SimpleCell>> &v) {
+void printSimple(const std::vector<std::vector<ClassicCell>> &v) {
     for (auto &i: v) {
         for (auto &j: i) {
             std::cout << (j.is_alive() ? 1 : 0) << " ";
@@ -11,25 +13,7 @@ void printSimple(const std::vector<std::vector<SimpleCell>> &v) {
     }
 }
 
-int main() {
-    sf::RenderWindow window(
-        sf::VideoMode(1500, 1000),
-        "Game of Life",
-        sf::Style::Titlebar | sf::Style::Close
-    );
-    sf::Clock clock{};
-
-    SimpleLife life(10, 15);
-    life.enable_grid();
-    life.empty_start();
-    /*sf::Text text{};
-    sf::Font font{};
-    font.loadFromFile("arial.ttf");
-    text.setFont(font);
-    text.setFillColor(sf::Color::Black);
-    text.setString("Classic");
-    text.setPosition(200, 200);
-    text.setCharacterSize(20);*/
+void start_game(Life &life, sf::RenderWindow &window) {
     while (window.isOpen() && !life.is_started()) {
         sf::Clock tick{};
         sf::Event event{};
@@ -60,9 +44,29 @@ int main() {
         //window.draw(text);
         window.display();
     }
+}
 
+int main() {
+    sf::RenderWindow window(
+        sf::VideoMode(1500, 1000),
+        "Game of Life",
+        sf::Style::Titlebar | sf::Style::Close
+    );
+    sf::Clock clock{};
+
+    ClassicLife life(10, 15);
+    life.enable_grid();
+    life.empty_start();
+    /*sf::Text text{};
+    sf::Font font{};
+    font.loadFromFile("arial.ttf");
+    text.setFont(font);
+    text.setFillColor(sf::Color::Black);
+    text.setString("Classic");
+    text.setPosition(200, 200);
+    text.setCharacterSize(20);*/
+    start_game(life, window);
     life.disable_grid();
-
     while (window.isOpen()) {
         sf::Clock tick{};
         sf::Event event{};

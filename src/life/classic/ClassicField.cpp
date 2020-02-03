@@ -1,31 +1,31 @@
-#include "SimpleField.h"
+#include "ClassicField.h"
 
-SimpleField::SimpleField(int rows, int cols) {
-    field = std::vector<std::vector<SimpleCell>>();
+ClassicField::ClassicField(int rows, int cols) {
+    field = std::vector<std::vector<ClassicCell>>();
     this->rows = rows;
     this->cols = cols;
     for (int i = 0; i < rows; ++i) {
-        field.emplace_back(std::vector<SimpleCell>(cols));
+        field.emplace_back(std::vector<ClassicCell>(cols));
     }
 }
 
-void SimpleField::fill_random() {
+void ClassicField::fill_random() {
     for (auto &row: field) {
         for (auto &i: row) {
-            i = SimpleCell::get_random_state();
+            i = ClassicCell::get_random_state();
         }
     }
 }
 
-void SimpleField::change_cell(int row, int col) {
+void ClassicField::change_cell(int row, int col) {
     if(row < rows && col < cols)
         field[row][col].set_alive(!field[row][col].is_alive());
 }
 
-void SimpleField::update_state() {
-    auto nextField = std::vector<std::vector<SimpleCell>>();
+void ClassicField::update_state() {
+    auto nextField = std::vector<std::vector<ClassicCell>>();
     for (int i = 0; i < rows; ++i) {
-        nextField.emplace_back(std::vector<SimpleCell>(cols));
+        nextField.emplace_back(std::vector<ClassicCell>(cols));
     }
     for (int row = 0; row < rows; ++row) {
         for (int col = 0; col < cols; ++col) {
@@ -40,7 +40,7 @@ void SimpleField::update_state() {
     field = nextField;
 }
 
-int SimpleField::count_live_neighbors(int row, int col) {
+int ClassicField::count_live_neighbors(int row, int col) {
     auto neighbors = get_neighbors(row, col);
     int liveNeighbors = 0;
     for (const auto &i: neighbors) {
@@ -49,12 +49,12 @@ int SimpleField::count_live_neighbors(int row, int col) {
     return liveNeighbors;
 }
 
-std::vector<SimpleCell> SimpleField::get_neighbors(int row, int col) {
+std::vector<ClassicCell> ClassicField::get_neighbors(int row, int col) {
     int up = row != 0 ? row - 1 : rows - 1;
     int right = col != cols - 1 ? col + 1 : 0;
     int down = row != rows - 1 ? row + 1 : 0;
     int left = col != 0 ? col - 1 : cols - 1;
-    std::vector<SimpleCell> neighbors{};
+    std::vector<ClassicCell> neighbors{};
 
     neighbors.push_back(field[up][col]);
     neighbors.push_back(field[up][right]);
@@ -68,7 +68,7 @@ std::vector<SimpleCell> SimpleField::get_neighbors(int row, int col) {
     return neighbors;
 }
 
-std::vector<sf::RectangleShape> SimpleField::render(int window_size_x, int window_size_y) const {
+std::vector<sf::RectangleShape> ClassicField::render(int window_size_x, int window_size_y) const {
     int cell_size_x = window_size_x / cols;
     int cell_size_y = window_size_y / rows;
     std::vector<sf::RectangleShape> cells{};

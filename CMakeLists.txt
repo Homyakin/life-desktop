@@ -16,10 +16,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/arial.ttf
         ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
 add_executable(life_desktop src/main.cpp
-    src/game/Life.h src/game/Field.h src/game/Cell.h
-    src/game/simple/SimpleLife.cpp src/game/simple/SimpleLife.h
-    src/game/simple/SimpleField.cpp src/game/simple/SimpleField.h
-    src/game/simple/SimpleCell.cpp src/game/simple/SimpleCell.h
-    src/game/GameStatus.h)
+    src/life/Life.h src/life/Field.h src/life/Cell.h
+    src/life/classic/ClassicLife.cpp src/life/classic/ClassicLife.h
+    src/life/classic/ClassicField.cpp src/life/classic/ClassicField.h
+    src/life/classic/ClassicCell.cpp src/life/classic/ClassicCell.h
+    src/life/GameStatus.h)
 
 target_link_libraries(life_desktop sfml-graphics sfml-audio)

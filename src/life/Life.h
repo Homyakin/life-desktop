@@ -4,7 +4,6 @@
 #include "Field.h"
 #include "GameStatus.h"
 
-template<class T, typename = std::enable_if<std::is_base_of<Cell, T>::value>>
 class Life {
 protected:
     int rows = 0;
@@ -20,8 +19,6 @@ public:
     virtual void empty_start() = 0;
 
     virtual void change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) = 0;
-
-    virtual const std::vector<std::vector<T>> &get_current_state() const = 0;
 
     virtual void render(sf::RenderWindow &window) const = 0;
 

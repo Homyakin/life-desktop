@@ -2,11 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Field.h"
-#include "SimpleCell.h"
+#include "ClassicCell.h"
 
-class SimpleField : public Field<SimpleCell> {
+class ClassicField : public Field<ClassicCell> {
 public:
-    SimpleField(int rows, int cols);
+    ClassicField(int rows, int cols);
 
     void fill_random() override;
 
@@ -19,6 +19,6 @@ public:
 private:
     int count_live_neighbors(int row, int col);
 
-    std::vector<SimpleCell> get_neighbors(int row, int col);
+    std::vector<ClassicCell> get_neighbors(int row, int col);
 };
 

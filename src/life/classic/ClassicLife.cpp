@@ -1,20 +1,20 @@
-#include "SimpleLife.h"
+#include "ClassicLife.h"
 
-SimpleLife::SimpleLife(int rows, int cols) : field(rows, cols) {
+ClassicLife::ClassicLife(int rows, int cols) : field(rows, cols) {
     this->rows = rows;
     this->cols = cols;
 }
 
-void SimpleLife::random_start() {
+void ClassicLife::random_start() {
     field.fill_random();
     tick = 0;
 }
 
-void SimpleLife::empty_start() {
+void ClassicLife::empty_start() {
     tick = 0;
 }
 
-void SimpleLife::change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) {
+void ClassicLife::change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) {
     if (status != GameStatus::PREPARING) return;
     int size_x = window.getSize().x;
     int size_y = window.getSize().y;
@@ -23,16 +23,12 @@ void SimpleLife::change_cell(const sf::RenderWindow &window, int mouse_x, int mo
     field.change_cell(row, col);
 }
 
-void SimpleLife::next_tick() {
+void ClassicLife::next_tick() {
     field.update_state();
     ++tick;
 }
 
-const std::vector<std::vector<SimpleCell>> &SimpleLife::get_current_state() const {
-    return field.get_current_state();
-}
-
-void SimpleLife::render(sf::RenderWindow &window) const {
+void ClassicLife::render(sf::RenderWindow &window) const {
     window.clear(sf::Color::White);
     auto cells = field.render(window.getSize().x, window.getSize().y);
     for (auto &cell: cells) {
