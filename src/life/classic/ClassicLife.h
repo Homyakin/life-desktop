@@ -16,10 +16,10 @@ public:
 
     void empty_start() override;
 
-    void change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) override;
+    void change_cell(int height, int width, int mouse_x, int mouse_y) override;
 
     void next_tick() override;
 
-    void render(sf::RenderWindow &window) const override;
+    void render(sf::RenderWindow &window, int height, int width) const override;
 };
 

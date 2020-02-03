@@ -1,62 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "life/classic/ClassicCell.h"
-#include "life/Life.h"
-#include "life/classic/ClassicLife.h"
-
-void printSimple(const std::vector<std::vector<ClassicCell>> &v) {
-    for (auto &i: v) {
-        for (auto &j: i) {
-            std::cout << (j.is_alive() ? 1 : 0) << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
-void start_game(Life &life, sf::RenderWindow &window) {
-    while (window.isOpen() && !life.is_started()) {
-        sf::Clock tick{};
-        sf::Event event{};
-        while (window.pollEvent(event)) {
-            switch (event.type) {
-                case sf::Event::Closed:
-                    window.close();
-                    break;
-                case sf::Event::MouseButtonPressed: {
-                    if (event.mouseButton.button == sf::Mouse::Button::Left) {
-                        life.change_cell(window, event.mouseButton.x, event.mouseButton.y);
-                    }
-                    break;
-                }
-                case sf::Event::KeyPressed:
-                    if (event.key.code == sf::Keyboard::Return) {
-                        std::cout << "START" << std::endl;
-                        life.start_game();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        window.clear();
-        life.render(window);
-        //window.draw(text);
-        window.display();
-    }
-}
+#include "Application.h"
 
 int main() {
-    sf::RenderWindow window(
-        sf::VideoMode(1500, 1000),
-        "Game of Life",
-        sf::Style::Titlebar | sf::Style::Close
-    );
+    Application app{};
     sf::Clock clock{};
+    app.start();
 
-    ClassicLife life(10, 15);
-    life.enable_grid();
-    life.empty_start();
     /*sf::Text text{};
     sf::Font font{};
     font.loadFromFile("arial.ttf");
@@ -65,28 +16,6 @@ int main() {
     text.setString("Classic");
     text.setPosition(200, 200);
     text.setCharacterSize(20);*/
-    start_game(life, window);
-    life.disable_grid();
-    while (window.isOpen()) {
-        sf::Clock tick{};
-        sf::Event event{};
-        while (window.pollEvent(event)) {
-            switch (event.type) {
-                case sf::Event::Closed:
-                    window.close();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        window.clear();
-        life.render(window);
-        life.next_tick();
-        window.display();
-        if (tick.getElapsedTime().asMilliseconds() < 500)
-            sf::sleep(sf::milliseconds(500 - tick.getElapsedTime().asMilliseconds()));
-    }
 
     std::cout << clock.getElapsedTime().asSeconds() << std::endl;
     return 0;

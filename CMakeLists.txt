@@ -15,7 +15,7 @@ find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/arial.ttf
         ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
-add_executable(life_desktop src/main.cpp
+add_executable(life_desktop src/main.cpp src/Application.h src/Application.cpp
     src/life/Life.h src/life/Field.h src/life/Cell.h
     src/life/classic/ClassicLife.cpp src/life/classic/ClassicLife.h
     src/life/classic/ClassicField.cpp src/life/classic/ClassicField.h
