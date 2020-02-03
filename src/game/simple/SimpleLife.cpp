@@ -15,7 +15,7 @@ void SimpleLife::empty_start() {
 }
 
 void SimpleLife::change_cell(const sf::RenderWindow &window, int mouse_x, int mouse_y) {
-    if (started) return;
+    if (status != GameStatus::PREPARING) return;
     int size_x = window.getSize().x;
     int size_y = window.getSize().y;
     int col = mouse_x * cols / size_x;

@@ -19,6 +19,7 @@ add_executable(life_desktop src/main.cpp
     src/game/Life.h src/game/Field.h src/game/Cell.h
     src/game/simple/SimpleLife.cpp src/game/simple/SimpleLife.h
     src/game/simple/SimpleField.cpp src/game/simple/SimpleField.h
-    src/game/simple/SimpleCell.cpp src/game/simple/SimpleCell.h)
+    src/game/simple/SimpleCell.cpp src/game/simple/SimpleCell.h
+    src/game/GameStatus.h)
 
 target_link_libraries(life_desktop sfml-graphics sfml-audio)

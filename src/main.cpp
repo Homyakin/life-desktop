@@ -57,7 +57,7 @@ int main() {
 
         window.clear();
         life.render(window);
-        window.draw(text);
+        //window.draw(text);
         window.display();
     }
 

@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Field.h"
+#include "GameStatus.h"
 
 template<class T, typename = std::enable_if<std::is_base_of<Cell, T>::value>>
 class Life {
@@ -10,7 +11,7 @@ protected:
     int cols = 0;
     unsigned int tick = 0;
     bool grid_enabled = false;
-    bool started = false;
+    GameStatus status = GameStatus::PREPARING;
 public:
     virtual void random_start() = 0;
 
@@ -30,9 +31,9 @@ public:
 
     void disable_grid() { grid_enabled = false; }
 
-    void start_game() { started = true; }
+    void start_game() { status = IN_PROCESS; }
 
-    bool is_started() const { return started; }
+    bool is_started() const { return status != GameStatus::PREPARING; }
 
 protected:
     void render_grid(sf::RenderWindow &window) const {
