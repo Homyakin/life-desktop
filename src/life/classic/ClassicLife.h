@@ -17,10 +17,13 @@ public:
 
     void empty_start() override;
 
-    void change_cell(int mouse_x, int mouse_y) override;
-
     void next_tick() override;
 
     void render(sf::RenderWindow &window) const override;
+
+    bool click(int mouse_x, int mouse_y) override;
+
+protected:
+    void change_cell(int mouse_x, int mouse_y) override;
 };
 

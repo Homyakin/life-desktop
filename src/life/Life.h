@@ -3,9 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include "Field.h"
 #include "../interfaces/Rendered.h"
+#include "../interfaces/Clickable.h"
 #include "GameStatus.h"
 
-class Life : public Rendered {
+class Life : public Rendered, public Clickable {
 protected:
     int rows = 0;
     int cols = 0;
@@ -21,8 +22,6 @@ public:
 
     virtual void empty_start() = 0;
 
-    virtual void change_cell(int mouse_x, int mouse_y) = 0;
-
     bool is_grid_enabled() const { return grid_enabled; }
 
     void enable_grid() { grid_enabled = true; }
@@ -31,9 +30,11 @@ public:
 
     void start_game() { status = IN_PROCESS; }
 
-    bool is_started() const { return status != GameStatus::PREPARING; }
+    GameStatus get_status() const { return status; }
 
 protected:
+    virtual void change_cell(int mouse_x, int mouse_y) = 0;
+
     void render_grid(sf::RenderWindow &window) const {
         sf::VertexArray vertical_lines(sf::Lines, (cols + 1) * 2);
         int x_size = size_x / cols;

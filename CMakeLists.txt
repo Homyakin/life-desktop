@@ -25,6 +25,6 @@ add_executable(
     src/menu/Menu.cpp src/menu/Menu.h
     src/interfaces/Rendered.h
     src/models/Point.h src/models/Button.cpp src/models/Button.h
-)
+        src/interfaces/Clickable.h)
 
 target_link_libraries(life_desktop sfml-graphics sfml-audio)

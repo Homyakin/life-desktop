@@ -18,14 +18,6 @@ void ClassicLife::empty_start() {
     tick = 0;
 }
 
-void ClassicLife::change_cell(int mouse_x, int mouse_y) {
-    mouse_x -= offset.x;
-    mouse_y -= offset.y;
-    int col = mouse_x * cols / (size_x - offset.x);
-    int row = mouse_y * rows / (size_y - offset.y);
-    field.change_cell(row, col);
-}
-
 void ClassicLife::next_tick() {
     if (status != GameStatus::PAUSE) {
         field.update_state();
@@ -34,10 +26,31 @@ void ClassicLife::next_tick() {
 }
 
 void ClassicLife::render(sf::RenderWindow &window) const {
-    window.clear(sf::Color::White);
+    sf::RectangleShape place(sf::Vector2f(size_x, size_y));
+    place.setFillColor(sf::Color::White);
+    place.setPosition(offset.x, offset.y);
+    window.draw(place);
     auto cells = field.render(size_x, size_y, offset);
     for (auto &cell: cells) {
         window.draw(cell);
     }
     if (grid_enabled) render_grid(window);
+}
+
+bool ClassicLife::click(int mouse_x, int mouse_y) {
+    if (mouse_x < offset.x || mouse_x >= offset.x + size_x ||
+        mouse_y < offset.y || mouse_y >= offset.y + size_y) {
+        return false;
+    }
+    if (status == GameStatus::PREPARING) change_cell(mouse_x, mouse_y);
+    return true;
+}
+
+
+void ClassicLife::change_cell(int mouse_x, int mouse_y) {
+    mouse_x -= offset.x;
+    mouse_y -= offset.y;
+    int col = mouse_x * cols / size_x;
+    int row = mouse_y * rows / size_y;
+    field.change_cell(row, col);
 }

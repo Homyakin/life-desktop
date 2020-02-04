@@ -1,8 +1,9 @@
 #pragma once
 
 #include "../interfaces/Rendered.h"
+#include "../interfaces/Clickable.h"
 
-class Button: public Rendered {
+class Button: public Rendered, public Clickable {
 private:
     bool pressed = false;
 public:
@@ -13,4 +14,6 @@ public:
     bool check_press(int mouse_x, int mouse_y);
 
     bool check_release(int mouse_x, int mouse_y);
+
+    bool click(int mouse_x, int mouse_y) override;
 };
