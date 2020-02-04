@@ -11,16 +11,16 @@ private:
     ClassicField field;
 
 public:
-    ClassicLife(int rows, int cols);
+    ClassicLife(int rows, int cols, int size_x, int size_y, const Point &_offset);
 
     void random_start() override;
 
     void empty_start() override;
 
-    void change_cell(Point upper_left, Point lower_right, int mouse_x, int mouse_y) override;
+    void change_cell(int mouse_x, int mouse_y) override;
 
     void next_tick() override;
 
-    void render(sf::RenderWindow &window, Point upper_left, Point lower_right) const override;
+    void render(sf::RenderWindow &window) const override;
 };
 

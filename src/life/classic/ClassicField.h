@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Field.h"
 #include "ClassicCell.h"
+#include "../../models/Point.h"
 
 class ClassicField : public Field<ClassicCell> {
 public:
@@ -14,7 +15,7 @@ public:
 
     void change_cell(int row, int col) override;
 
-    std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y) const override;
+    std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y, Point offset) const override;
 
 private:
     int count_live_neighbors(int row, int col);

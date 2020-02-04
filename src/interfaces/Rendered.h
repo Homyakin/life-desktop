@@ -4,5 +4,18 @@
 #include "../models/Point.h"
 
 class Rendered {
-    virtual void render(sf::RenderWindow &window, Point upper_left, Point lower_right) const = 0;
+protected:
+    int size_x;
+    int size_y;
+    Point offset;
+public:
+    Rendered(Point _offset) : offset(_offset) {}
+
+    int get_width() const { return size_x; }
+
+    int get_height() const { return size_y; }
+
+    Point get_offset() const { return offset; }
+
+    virtual void render(sf::RenderWindow &window) const = 0;
 };

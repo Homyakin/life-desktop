@@ -18,7 +18,7 @@ void ClassicField::fill_random() {
 }
 
 void ClassicField::change_cell(int row, int col) {
-    if(row < rows && col < cols && row >= 0 && col >= 0)
+    if (row < rows && col < cols && row >= 0 && col >= 0)
         field[row][col].set_alive(!field[row][col].is_alive());
 }
 
@@ -68,7 +68,7 @@ std::vector<ClassicCell> ClassicField::get_neighbors(int row, int col) {
     return neighbors;
 }
 
-std::vector<sf::RectangleShape> ClassicField::render(int window_size_x, int window_size_y) const {
+std::vector<sf::RectangleShape> ClassicField::render(int window_size_x, int window_size_y, Point offset) const {
     int cell_size_x = window_size_x / cols;
     int cell_size_y = window_size_y / rows;
     std::vector<sf::RectangleShape> cells{};
@@ -76,7 +76,7 @@ std::vector<sf::RectangleShape> ClassicField::render(int window_size_x, int wind
         for (int col = 0; col < field[row].size(); ++col) {
             if (field[row][col].is_alive()) {
                 sf::RectangleShape cell = field[row][col].render(cell_size_x, cell_size_y);
-                cell.setPosition(col * cell_size_x, row * cell_size_y);
+                cell.setPosition(col * cell_size_x + offset.x, row * cell_size_y + offset.y);
                 cells.push_back(cell);
             }
         }

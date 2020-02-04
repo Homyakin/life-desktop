@@ -5,5 +5,7 @@
 
 class Menu : public Rendered {
 public:
-    void render(sf::RenderWindow &window, Point upper_left, Point lower_right) const override;
+    Menu(int size_x, int size_y, const Point& _offset);
+
+    void render(sf::RenderWindow &window) const override;
 };

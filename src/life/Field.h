@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Cell.h"
+#include "../models/Point.h"
 
 template<class T, typename = std::enable_if<std::is_base_of<Cell, T>::value>>
 class Field {
@@ -23,5 +24,5 @@ public:
 
     virtual void change_cell(int row, int col) = 0;
 
-    virtual std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y) const = 0;
+    virtual std::vector<sf::RectangleShape> render(int window_size_x, int window_size_y, Point offset) const = 0;
 };
