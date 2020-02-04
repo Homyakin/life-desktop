@@ -18,7 +18,7 @@ void ClassicField::fill_random() {
 }
 
 void ClassicField::change_cell(int row, int col) {
-    if(row < rows && col < cols)
+    if(row < rows && col < cols && row >= 0 && col >= 0)
         field[row][col].set_alive(!field[row][col].is_alive());
 }
 

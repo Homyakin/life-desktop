@@ -14,10 +14,12 @@ void ClassicLife::empty_start() {
     tick = 0;
 }
 
-void ClassicLife::change_cell(int height, int width, int mouse_x, int mouse_y) {
+void ClassicLife::change_cell(Point upper_left, Point lower_right, int mouse_x, int mouse_y) {
     if (status != GameStatus::PREPARING) return;
-    int col = mouse_x * cols / width;
-    int row = mouse_y * rows / height;
+    mouse_x -= upper_left.x;
+    mouse_y -= upper_left.y;
+    int col = mouse_x * cols / (lower_right.x - upper_left.x);
+    int row = mouse_y * rows / (lower_right.y - upper_left.y);
     field.change_cell(row, col);
 }
 
@@ -28,11 +30,11 @@ void ClassicLife::next_tick() {
     }
 }
 
-void ClassicLife::render(sf::RenderWindow &window, int height, int width) const {
+void ClassicLife::render(sf::RenderWindow &window, Point upper_left, Point lower_right) const {
     window.clear(sf::Color::White);
-    auto cells = field.render(width, height);
+    auto cells = field.render(lower_right.x - upper_left.x, lower_right.y- upper_left.y);
     for (auto &cell: cells) {
         window.draw(cell);
     }
-    if (grid_enabled) render_grid(window, height, width);
+    if (grid_enabled) render_grid(window, upper_left, lower_right);
 }

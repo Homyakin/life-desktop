@@ -1,12 +1,14 @@
 #include <iostream>
 #include "Application.h"
 #include "life/classic/ClassicLife.h"
+#include "menu/Menu.h"
 
 Application::Application() : window(sf::VideoMode(1500, 1000),
                                     "Game of Life",
                                     sf::Style::Titlebar | sf::Style::Close) {}
 
 void Application::start() {
+    Menu menu{};
     ClassicLife life(10, 10);
     life.enable_grid();
     life.empty_start();
@@ -20,7 +22,7 @@ void Application::start() {
                     break;
                 case sf::Event::MouseButtonPressed: {
                     if (event.mouseButton.button == sf::Mouse::Button::Left) {
-                        life.change_cell(game_height, game_width, event.mouseButton.x, event.mouseButton.y);
+                        life.change_cell(life_upper_left, life_lower_right, event.mouseButton.x, event.mouseButton.y);
                     }
                     break;
                 }
@@ -36,7 +38,8 @@ void Application::start() {
         }
 
         window.clear();
-        life.render(window, game_height, game_width);
+        life.render(window, life_upper_left, life_lower_right);
+        menu.render(window, menu_upper_left, menu_lower_right);
         window.display();
     }
     life.disable_grid();
@@ -54,7 +57,8 @@ void Application::start() {
         }
 
         window.clear();
-        life.render(window, game_height, game_width);
+        life.render(window, life_upper_left, life_lower_right);
+        menu.render(window, menu_upper_left, menu_lower_right);
         life.next_tick();
         window.display();
         if (tick.getElapsedTime().asMilliseconds() < 500)
