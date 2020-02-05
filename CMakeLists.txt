@@ -23,8 +23,8 @@ add_executable(
     src/life/classic/ClassicCell.cpp src/life/classic/ClassicCell.h
     src/life/GameStatus.h
     src/menu/Menu.cpp src/menu/Menu.h
-    src/interfaces/Rendered.h
-    src/models/Point.h src/models/Button.cpp src/models/Button.h
-        src/interfaces/Clickable.h)
+    src/interfaces/Rendered.h src/interfaces/Clickable.h
+    src/models/Point.h src/models/Button.cpp src/models/Button.h src/models/Colors.h
+)
 
 target_link_libraries(life_desktop sfml-graphics sfml-audio)

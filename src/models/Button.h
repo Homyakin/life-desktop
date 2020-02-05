@@ -11,9 +11,7 @@ public:
 
     void render(sf::RenderWindow &window) const override;
 
-    bool check_press(int mouse_x, int mouse_y);
-
-    bool check_release(int mouse_x, int mouse_y);
-
     bool click(int mouse_x, int mouse_y) override;
+
+    bool release(int mouse_x, int mouse_y);
 };

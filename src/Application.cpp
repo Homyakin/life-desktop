@@ -22,8 +22,8 @@ void Application::start() {
     );
     life.enable_grid();
     life.empty_start();
+    sf::Clock tick{};
     while (window.isOpen()) {
-        sf::Clock tick{};
         sf::Event event{};
         while (window.pollEvent(event)) {
             switch (event.type) {
@@ -38,6 +38,9 @@ void Application::start() {
                         if (life.click(mouse_x, mouse_y) || menu.click(mouse_x, mouse_y));
                     }
                     break;
+                }
+                case sf::Event::MouseButtonReleased: {
+                    if(menu.has_pressed_button()) menu.release_button(event.mouseButton.x, event.mouseButton.y);
                 }
                 case sf::Event::KeyPressed:
                     if (event.key.code == sf::Keyboard::Return && life.get_status() == GameStatus::PREPARING) {
@@ -54,9 +57,9 @@ void Application::start() {
         life.render(window);
         menu.render(window);
         window.display();
-        if (life.get_status() == GameStatus::IN_PROCESS && tick.getElapsedTime().asMilliseconds() < 500) {
-            sf::sleep(sf::milliseconds(500 - tick.getElapsedTime().asMilliseconds()));
+        if (life.get_status() == GameStatus::IN_PROCESS && tick.getElapsedTime().asMilliseconds() >= 500) {
             life.next_tick();
+            tick.restart();
         }
     }
 }
