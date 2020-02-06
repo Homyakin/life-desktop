@@ -3,12 +3,12 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../interfaces/Rendered.h"
 #include "../interfaces/Clickable.h"
-#include "../models/Button.h"
+#include "../models/TextButton.h"
 #include "../models/Colors.h"
 
 class Menu : public Rendered, public Clickable {
 private:
-    std::vector<Button> buttons;
+    std::vector<Button *> buttons;
     Button *pressed_button = nullptr;
 public:
     Menu(int size_x, int size_y, const Point &_offset);

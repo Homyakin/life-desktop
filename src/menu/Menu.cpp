@@ -4,7 +4,7 @@
 Menu::Menu(int size_x, int size_y, const Point &_offset) : Rendered(_offset) {
     this->size_x = size_x;
     this->size_y = size_y;
-    buttons.emplace_back(100, 50, Point(offset.x + 40, offset.y + 40));
+    buttons.push_back(new TextButton("test", 30, Point(offset.x + 40, offset.y + 40)));
 }
 
 void Menu::render(sf::RenderWindow &window) const {
@@ -13,8 +13,8 @@ void Menu::render(sf::RenderWindow &window) const {
     place.setFillColor(MENU);
     place.setPosition(offset.x, offset.y);
     window.draw(place);
-    for (auto &button: buttons) {
-        button.render(window);
+    for (auto button: buttons) {
+        button->render(window);
     }
 }
 
@@ -24,9 +24,9 @@ bool Menu::click(int mouse_x, int mouse_y) {
         return false;
     }
     int i;
-    for (i = 0; i < buttons.size() && !buttons[i].click(mouse_x, mouse_y); ++i);
+    for (i = 0; i < buttons.size() && !buttons[i]->click(mouse_x, mouse_y); ++i);
     if (i < buttons.size()) {
-        pressed_button = &buttons[i];
+        pressed_button = buttons[i];
     }
     return true;
 }

@@ -8,6 +8,8 @@ Button::Button(int size_x, int size_y, const Point &_offset) : Rendered(_offset)
     this->size_y = size_y;
 }
 
+Button::Button(const Point &_offset) : Rendered(_offset) {}
+
 void Button::render(sf::RenderWindow &window) const {
     sf::RectangleShape place(sf::Vector2f(size_x, size_y));
     place.setFillColor((pressed ? PRESSED_BUTTON : BUTTON));
