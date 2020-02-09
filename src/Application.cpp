@@ -1,27 +1,32 @@
 #include <iostream>
 #include "Application.h"
 #include "life/classic/ClassicLife.h"
-#include "menu/Menu.h"
+#include "menu/MenuManager.h"
+
+template<typename Base, typename T>
+inline bool instanceof(const T*) {
+    return std::is_base_of<Base, T>::value;
+}
 
 Application::Application() : window(sf::VideoMode(1500, 1000),
                                     "Game of Life",
                                     sf::Style::Titlebar | sf::Style::Close) {}
 
 void Application::start() {
-    Menu menu(
+    MenuManager menu(
         menu_lower_right.x - menu_upper_left.x,
         menu_lower_right.y - menu_upper_left.y,
         menu_upper_left
     );
     ClassicLife life(
-        10,
-        10,
+        100,
+        100,
         life_lower_right.x - life_upper_left.x,
         life_lower_right.y - life_upper_left.y,
         life_upper_left
     );
     life.enable_grid();
-    life.empty_start();
+    life.random_start();
     sf::Clock tick{};
     while (window.isOpen()) {
         sf::Event event{};

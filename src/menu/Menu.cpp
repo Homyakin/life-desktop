@@ -4,7 +4,6 @@
 Menu::Menu(int size_x, int size_y, const Point &_offset) : Rendered(_offset) {
     this->size_x = size_x;
     this->size_y = size_y;
-    buttons.push_back(new TextButton("test", 30, Point(offset.x + 40, offset.y + 40)));
 }
 
 void Menu::render(sf::RenderWindow &window) const {

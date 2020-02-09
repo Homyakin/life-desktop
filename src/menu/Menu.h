@@ -7,7 +7,7 @@
 #include "../models/Colors.h"
 
 class Menu : public Rendered, public Clickable {
-private:
+protected:
     std::vector<Button *> buttons;
     Button *pressed_button = nullptr;
 public:
