@@ -19,7 +19,7 @@ public:
 
     void next_tick() override;
 
-    void render(sf::RenderWindow &window) const override;
+    void render(sf::RenderWindow &window) override;
 
     bool click(int mouse_x, int mouse_y) override;
 

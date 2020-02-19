@@ -13,6 +13,7 @@ protected:
     unsigned int tick = 0;
     bool grid_enabled = false;
     GameStatus status = GameStatus::PREPARING;
+    std::mutex field_lock;
 public:
     Life(Point _offset) : Rendered(_offset) {}
 
@@ -21,6 +22,8 @@ public:
     virtual void next_tick() = 0;
 
     virtual void empty_start() = 0;
+
+    unsigned int get_tick() const { return tick; }
 
     bool is_grid_enabled() const { return grid_enabled; }
 

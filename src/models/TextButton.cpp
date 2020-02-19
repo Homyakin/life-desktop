@@ -15,7 +15,7 @@ TextButton::TextButton(const std::string &text, int charset_size, const Point &_
     size_y = coords.height + 20;
 }
 
-void TextButton::render(sf::RenderWindow &window) const {
+void TextButton::render(sf::RenderWindow &window) {
     sf::RectangleShape place(sf::Vector2f(size_x, size_y));
     place.setFillColor((pressed ? PRESSED_BUTTON : BUTTON));
     place.setOutlineColor(sf::Color::Black);

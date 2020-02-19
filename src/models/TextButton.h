@@ -12,5 +12,5 @@ private:
 public:
     TextButton(const std::string &text, int charset_size, const Point &_offset);
 
-    void render(sf::RenderWindow &window) const override;
+    void render(sf::RenderWindow &window) override;
 };

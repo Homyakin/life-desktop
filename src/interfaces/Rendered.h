@@ -17,5 +17,5 @@ public:
 
     Point get_offset() const { return offset; }
 
-    virtual void render(sf::RenderWindow &window) const = 0;
+    virtual void render(sf::RenderWindow &window) = 0;
 };

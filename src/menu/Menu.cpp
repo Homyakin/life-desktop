@@ -6,7 +6,7 @@ Menu::Menu(int size_x, int size_y, const Point &_offset) : Rendered(_offset) {
     this->size_y = size_y;
 }
 
-void Menu::render(sf::RenderWindow &window) const {
+void Menu::render(sf::RenderWindow &window) {
     sf::RectangleShape place{};
     place.setSize(sf::Vector2f(size_x, size_y));
     place.setFillColor(MENU);

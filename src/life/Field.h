@@ -18,7 +18,7 @@ public:
 
     int get_cols() const { return cols; }
 
-    virtual void update_state() = 0;
+    virtual void update_state(std::mutex &field_lock) = 0;
 
     virtual void fill_random() = 0;
 

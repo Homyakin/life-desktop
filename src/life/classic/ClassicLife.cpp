@@ -20,12 +20,13 @@ void ClassicLife::empty_start() {
 
 void ClassicLife::next_tick() {
     if (status != GameStatus::PAUSE) {
-        field.update_state();
+        field.update_state(field_lock);
         ++tick;
     }
 }
 
-void ClassicLife::render(sf::RenderWindow &window) const {
+void ClassicLife::render(sf::RenderWindow &window) {
+    field_lock.lock();
     sf::RectangleShape place(sf::Vector2f(size_x, size_y));
     place.setFillColor(sf::Color::White);
     place.setPosition(offset.x, offset.y);
@@ -35,6 +36,7 @@ void ClassicLife::render(sf::RenderWindow &window) const {
         window.draw(cell);
     }
     if (grid_enabled) render_grid(window);
+    field_lock.unlock();
 }
 
 bool ClassicLife::click(int mouse_x, int mouse_y) {

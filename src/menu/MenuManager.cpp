@@ -8,7 +8,7 @@ MenuManager::MenuManager(int size_x, int size_y, const Point &_offset) : Rendere
     active_menu = new TestMenu(size_x, size_y, _offset); //remove size from menu??
 }
 
-void MenuManager::render(sf::RenderWindow &window) const {
+void MenuManager::render(sf::RenderWindow &window) {
     active_menu->render(window);
 }
 

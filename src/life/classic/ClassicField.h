@@ -11,7 +11,7 @@ public:
 
     void fill_random() override;
 
-    void update_state() override;
+    void update_state(std::mutex &field_lock) override;
 
     void change_cell(int row, int col) override;
 

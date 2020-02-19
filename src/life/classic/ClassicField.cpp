@@ -22,7 +22,7 @@ void ClassicField::change_cell(int row, int col) {
         field[row][col].set_alive(!field[row][col].is_alive());
 }
 
-void ClassicField::update_state() {
+void ClassicField::update_state(std::mutex &field_lock) {
     auto nextField = std::vector<std::vector<ClassicCell>>();
     for (int i = 0; i < rows; ++i) {
         nextField.emplace_back(std::vector<ClassicCell>(cols));
@@ -37,7 +37,9 @@ void ClassicField::update_state() {
             }
         }
     }
+    field_lock.lock();
     field = nextField;
+    field_lock.unlock();
 }
 
 int ClassicField::count_live_neighbors(int row, int col) {

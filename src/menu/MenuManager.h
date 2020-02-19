@@ -8,7 +8,7 @@ private:
 public:
     MenuManager(int size_x, int size_y, const Point &_offset);
 
-    void render(sf::RenderWindow &window) const override;
+    void render(sf::RenderWindow &window) override;
 
     bool click(int mouse_x, int mouse_y) override;
 
