@@ -37,8 +37,17 @@ bool Menu::has_pressed_button() const {
 bool Menu::release_button(int mouse_x, int mouse_y) {
     if (pressed_button != nullptr) {
         bool result = pressed_button->release(mouse_x, mouse_y);
+        if (result) event = pressed_button->get_event();
         pressed_button = nullptr;
         return result;
     }
     return false;
+}
+
+MenuEvent Menu::get_event() const {
+    return event;
+}
+
+void Menu::clear_event() {
+    event = MenuEvent::NONE;
 }

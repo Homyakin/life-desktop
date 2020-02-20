@@ -3,9 +3,10 @@
 #include "Button.h"
 #include "Colors.h"
 
-Button::Button(int size_x, int size_y, const Point &_offset) : Rendered(_offset) {
+Button::Button(int size_x, int size_y, const Point &_offset, MenuEvent event) : Rendered(_offset) {
     this->size_x = size_x;
     this->size_y = size_y;
+    this->event = event;
 }
 
 Button::Button(const Point &_offset) : Rendered(_offset) {}
@@ -32,4 +33,8 @@ bool Button::release(int mouse_x, int mouse_y) {
     pressed = false;
     return mouse_x >= offset.x && mouse_x <= offset.x + size_x &&
            mouse_y >= offset.y && mouse_y <= offset.y + size_y;
+}
+
+MenuEvent Button::get_event() const {
+    return event;
 }

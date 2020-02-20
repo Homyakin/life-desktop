@@ -10,6 +10,7 @@ class Menu : public Rendered, public Clickable {
 protected:
     std::vector<Button *> buttons;
     Button *pressed_button = nullptr;
+    MenuEvent event = MenuEvent::NONE;
 public:
     Menu(int size_x, int size_y, const Point &_offset);
 
@@ -20,4 +21,8 @@ public:
     bool has_pressed_button() const;
 
     bool release_button(int mouse_x, int mouse_y);
+
+    MenuEvent get_event() const;
+
+    void clear_event();
 };

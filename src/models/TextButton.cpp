@@ -2,15 +2,17 @@
 #include "TextButton.h"
 #include "Colors.h"
 
-TextButton::TextButton(const std::string &text, int charset_size, const Point &_offset) : Button(_offset) {
+TextButton::TextButton(const std::string &text, int charset_size, const Point &_offset, MenuEvent event) : Button(
+    _offset) {
     this->text = text;
     this->charset_size = charset_size;
+    this->event = event;
 
+    //center text on button
     sf::Font font;
     font.loadFromFile("arial.ttf");
     sf::Text sf_text(text, font, charset_size);
     auto coords = sf_text.getLocalBounds();
-
     size_x = coords.width + 20;
     size_y = coords.height + 20;
 }
@@ -23,7 +25,7 @@ void TextButton::render(sf::RenderWindow &window) {
     place.setPosition(offset.x, offset.y);
     sf::Font font{};
     font.loadFromFile("arial.ttf");
-    sf::Text sf_text("test", font, 30);
+    sf::Text sf_text(text, font, 30);
     sf_text.setFillColor(sf::Color::Black);
     auto coords = sf_text.getLocalBounds();
     //center text

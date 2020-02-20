@@ -5,6 +5,7 @@
 class MenuManager : public Rendered, public Clickable {
 private:
     Menu *active_menu;
+    MenuEvent event = MenuEvent::NONE;
 public:
     MenuManager(int size_x, int size_y, const Point &_offset);
 
@@ -17,4 +18,8 @@ public:
     bool has_pressed_button() const;
 
     bool release_button(int mouse_x, int mouse_y);
+
+    MenuEvent get_event() const;
+
+    void clear_event();
 };

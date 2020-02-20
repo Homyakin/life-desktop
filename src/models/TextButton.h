@@ -10,7 +10,7 @@ private:
     std::string text;
     int charset_size;
 public:
-    TextButton(const std::string &text, int charset_size, const Point &_offset);
+    TextButton(const std::string &text, int charset_size, const Point &_offset, MenuEvent event);
 
     void render(sf::RenderWindow &window) override;
 };

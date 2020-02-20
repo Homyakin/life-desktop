@@ -28,3 +28,11 @@ bool MenuManager::release_button(int mouse_x, int mouse_y) {
     return active_menu->release_button(mouse_x, mouse_y);
 }
 
+MenuEvent MenuManager::get_event() const {
+    return active_menu->get_event();
+}
+
+void MenuManager::clear_event() {
+    active_menu->clear_event();
+}
+
