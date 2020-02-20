@@ -11,9 +11,12 @@ protected:
     int rows = 0;
     int cols = 0;
     unsigned int tick = 0;
+    unsigned int render_tick = -1;
     bool grid_enabled = false;
     GameStatus status = GameStatus::PREPARING;
     std::mutex field_lock;
+    std::vector<sf::RectangleShape> render_cells;
+
 public:
     Life(Point _offset) : Rendered(_offset) {}
 

@@ -24,8 +24,8 @@ void Application::start() {
         menu_upper_left
     );
     ClassicLife life(
-        10,
-        10,
+        100,
+        100,
         life_lower_right.x - life_upper_left.x,
         life_lower_right.y - life_upper_left.y,
         life_upper_left

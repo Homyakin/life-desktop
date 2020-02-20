@@ -31,8 +31,11 @@ void ClassicLife::render(sf::RenderWindow &window) {
     place.setFillColor(sf::Color::White);
     place.setPosition(offset.x, offset.y);
     window.draw(place);
-    auto cells = field.render(size_x, size_y, offset);
-    for (auto &cell: cells) {
+    if (render_tick != tick) {
+        render_tick = tick;
+        render_cells = field.render(size_x, size_y, offset);
+    }
+    for (auto &cell: render_cells) {
         window.draw(cell);
     }
     if (grid_enabled) render_grid(window);
