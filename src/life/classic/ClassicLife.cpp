@@ -31,7 +31,7 @@ void ClassicLife::render(sf::RenderWindow &window) {
     place.setFillColor(sf::Color::White);
     place.setPosition(offset.x, offset.y);
     window.draw(place);
-    if (render_tick != tick) {
+    if (render_tick != tick || status != GameStatus::IN_PROCESS) {
         render_tick = tick;
         render_cells = field.render(size_x, size_y, offset);
     }
